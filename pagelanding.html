@@ -3,111 +3,891 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Restaurant Sunu - Girly & Gourmand</title>
+  <title>Restaurant Sunu Wagne - Girly & Gourmand</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    :root {
-      --bs-primary: #e06c9f;
-      --bs-secondary: #b2dfdb;
-      --bs-light: #fff5e1;
-      --bs-dark: #3e2723;
-      --bs-warning: #fbc687;
-      --bs-font: 'Pacifico', cursive;
+  :root {
+    --bs-primary: #e06c9f;
+    --bs-secondary: #b2dfdb;
+    --bs-light: #fff5e1;
+    --bs-dark: #3e2723;
+    --bs-warning: #fbc687;
+    --bs-font: 'Pacifico', cursive;
+    --entree-color: #b2dfdb;
+    --plat-color: #fbc687;
+    --dessert-color: #e06c9f;
+  }
+
+  body {
+    background: var(--bs-light);
+    color: var(--bs-dark);
+    padding-top: 70px;
+  }
+
+  .logo {
+    font-family: var(--bs-font);
+    font-size: 2rem;
+    color: var(--bs-primary);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .navbar,
+  footer {
+    background: var(--bs-dark);
+    color: var(--bs-light);
+    padding: 1rem 0;
+  }
+
+  .navbar .nav-link,
+  footer a {
+    color: var(--bs-light);
+    transition: color .3s;
+  }
+
+  .navbar .nav-link:hover,
+  footer a:hover {
+    color: var(--bs-primary);
+  }
+
+  .btn-primary {
+    background: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--bs-dark);
+  }
+
+  .btn-primary:hover {
+    background: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--bs-light);
+  }
+
+  .btn-outline-light:hover {
+    background: var(--bs-primary);
+    color: var(--bs-dark);
+  }
+
+  .gallery img {
+    border-radius: .5rem;
+    transition: transform .3s;
+    box-shadow: 0 4px 16px rgba(224,108,159,0.08);
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  .carousel-inner {
+    background: var(--bs-light);
+    border-radius: .5rem;
+    padding: 2rem;
+  }
+
+  h2,
+  h1,
+  .logo {
+    font-family: var(--bs-font), cursive;
+  }
+
+  section {
+    animation: fadeIn 1s both;
+    padding: 40px 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-    body { background: var(--bs-light); color: var(--bs-dark); }
-    .logo { font-family: var(--bs-font); font-size: 2rem; color: var(--bs-primary); text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-    .navbar, footer { background: var(--bs-dark); }
-    .navbar .nav-link, footer a { color: var(--bs-light); transition: color .3s; }
-    .navbar .nav-link:hover, footer a:hover { color: var(--bs-primary); }
-    .btn-primary { background: var(--bs-primary); border-color: var(--bs-primary); color: var(--bs-dark); }
-    .btn-primary:hover { background: var(--bs-secondary); border-color: var(--bs-secondary); color: var(--bs-light); }
-    .btn-outline-light:hover { background: var(--bs-primary); color: var(--bs-dark); }
-    .gallery img { border-radius: .5rem; transition: transform .3s; }
-    .gallery img:hover { transform: scale(1.05); }
-    .carousel-inner { background: var(--bs-light); border-radius: .5rem; padding: 2rem; }
-  </style>
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem #e06c9f33;
+  }
+
+  .btn-secondary {
+    background: var(--bs-secondary);
+    border: none;
+    color: var(--bs-dark);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bs-primary);
+    color: var(--bs-light);
+  }
+
+  .alert-success,
+  .alert-secondary {
+    font-size: 1.1em;
+  }
+
+  .footer-logo {
+    font-family: var(--bs-font);
+    color: var(--bs-primary);
+    font-size: 1.5rem;
+  }
+
+  .footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .carousel-item p {
+    font-size: 1.2em;
+  }
+
+  .carousel-item footer {
+    color: var(--bs-primary);
+    font-family: var(--bs-font);
+  }
+  
+  /* Style pour les prix en CFA */
+  .price-tag {
+    background: rgba(224, 108, 159, 0.1);
+    border-radius: 1rem;
+    padding: 0.2rem 0.8rem;
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  /* Icônes spéciales */
+  .icon-feature {
+    font-size: 2.5rem;
+    color: var(--bs-primary);
+    margin-bottom: 15px;
+  }
+  
+  .features-section {
+    background: linear-gradient(rgba(255, 245, 225, 0.8), rgba(178, 223, 219, 0.2));
+    border-radius: 15px;
+    padding: 30px;
+    margin: 40px 0;
+  }
+  
+  .feature-item {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .contact-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: var(--bs-primary);
+  }
+  
+  .social-icon {
+    font-size: 1.8rem;
+    margin: 0 15px;
+    color: var(--bs-light);
+    transition: all 0.3s;
+  }
+  
+  .social-icon:hover {
+    color: var(--bs-primary);
+    transform: translateY(-5px);
+  }
+  
+  .menu-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: var(--bs-primary);
+  }
+  
+  .testimonial-icon {
+    font-size: 2rem;
+    color: var(--bs-primary);
+    margin-bottom: 15px;
+  }
+  
+  .section-title {
+    position: relative;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .section-title:after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--bs-primary);
+    border-radius: 2px;
+  }
+  
+  .highlight-card {
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    height: 100%;
+  }
+  
+  .highlight-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--bs-primary);
+    box-shadow: 0 10px 20px rgba(224, 108, 159, 0.2);
+  }
+  
+  .reservation-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  /* Styles pour les catégories de menu */
+  .menu-category {
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid;
+  }
+  
+  .category-title {
+    font-family: var(--bs-font);
+    margin: 0;
+    padding-left: 15px;
+  }
+  
+  .entrees .category-header {
+    border-color: var(--entree-color);
+  }
+  
+  .plats .category-header {
+    border-color: var(--plat-color);
+  }
+  
+  .desserts .category-header {
+    border-color: var(--dessert-color);
+  }
+  
+  .category-icon {
+    font-size: 2.5rem;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+  }
+  
+  .entrees .category-icon {
+    background: var(--entree-color);
+  }
+  
+  .plats .category-icon {
+    background: var(--plat-color);
+  }
+  
+  .desserts .category-icon {
+    background: var(--dessert-color);
+  }
+  
+  .menu-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    margin: 25px 0;
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .menu-item-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .menu-price {
+    color: var(--bs-primary);
+    font-weight: bold;
+    white-space: nowrap;
+    margin-left: 15px;
+  }
+  
+  .menu-category-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    position: relative;
+  }
+  
+  .menu-category-title h3 {
+    display: inline-block;
+    padding: 0 20px;
+    background: var(--bs-light);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .menu-category-title:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--bs-primary);
+    z-index: 0;
+  }
+  
+  .category-divider {
+    text-align: center;
+    margin: 40px 0;
+    position: relative;
+  }
+  
+  .category-divider h3 {
+    display: inline-block;
+    padding: 10px 30px;
+    background: var(--bs-light);
+    border: 2px solid var(--bs-primary);
+    border-radius: 50px;
+    position: relative;
+    z-index: 1;
+    font-family: var(--bs-font);
+    color: var(--bs-primary);
+  }
+  
+  .category-divider:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--bs-primary);
+    z-index: 0;
+  }
+</style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand logo" href="#">Sunu</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <a class="navbar-brand logo" href="#"><i class="fas fa-utensils me-2"></i>Sunu Wagne</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" title="Ouvrir le menu" aria-label="Ouvrir le menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#gallery">Galerie</a></li>
-          <li class="nav-item"><a class="nav-link" href="#reservation">Réservation</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonials">Témoignages</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery"><i class="fas fa-image me-1"></i>Galerie</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu"><i class="fas fa-book-open me-1"></i>Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reservation"><i class="fas fa-calendar-alt me-1"></i>Réservation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fas fa-comments me-1"></i>Témoignages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="d-flex align-items-center justify-content-center text-center text-white" style="background:url('hero.jpg')center/cover;height:60vh;">
+  <header class="d-flex align-items-center justify-content-center text-center text-white" style="background:linear-gradient(rgba(224,108,159,0.5),rgba(62,39,35,0.7)),url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80')center/cover;height:90vh;">
     <div>
-      <h1 class="display-4 fw-bold">Bienvenue chez Sunu</h1>
+      <h1 class="display-4 fw-bold">Bienvenue chez Sunu Wagne</h1>
       <p class="lead">Un voyage gourmand dans un cadre pastel & raffiné.</p>
-      <a href="#reservation" class="btn btn-primary btn-lg me-2">Réserver</a>
-      <a href="#gallery" class="btn btn-outline-light btn-lg">Découvrir</a>
+      <a href="#reservation" class="btn btn-primary btn-lg me-2"><i class="fas fa-calendar-check me-2"></i>Réserver</a>
+      <a href="#menu" class="btn btn-outline-light btn-lg"><i class="fas fa-book me-2"></i>Découvrir</a>
     </div>
   </header>
 
   <main class="container py-5">
     <section id="gallery" class="gallery mb-5">
-      <h2 class="mb-4 text-center">Nos Ambiances & Délices</h2>
+      <h2 class="mb-4 text-center section-title"><i class="fas fa-camera me-3"></i>Nos Ambiances & Délices</h2>
       <div class="row g-4">
-        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Délice+Roses" alt="Dessert rose pastel"/></div>
-        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Intérieur+Pastel" alt="Intérieur pastel"/></div>
-        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Cupcakes+Gourmands" alt="Cupcakes gourmands"/></div>
-        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Ambiance+Mint" alt="Ambiance vert menthe"/></div>
+        <div class="col-md-6"><img src="fac0b39e-8607-48b4-bfc1-21c2ff917e92.avif" alt="Dessert rose pastel" class="w-100"/></div>
+        <div class="col-md-6"><img src="Delicate-Pink-Interior-Design-for-Dessert-Shop.jpg" alt="Intérieur pastel" class="w-100"/></div>
+        <div class="col-md-6"><img src="restau.jpg" alt="Cupcakes gourmands" class="w-100"/></div>
+        <div class="col-md-6"><img src="whimsical-bakery-pastel-walls-hanging-plants-rows-colorful-pastries-picture-356167539.webp" alt="Ambiance vert menthe" class="w-100"/></div>
+      </div>
+    </section>
+
+    <div class="features-section">
+      <div class="row text-center">
+        <div class="col-md-4 feature-item">
+          <i class="fas fa-seedling icon-feature"></i>
+          <h3>Ingrédients Frais</h3>
+          <p>Produits locaux et de saison</p>
+        </div>
+        <div class="col-md-4 feature-item">
+          <i class="fas fa-heart icon-feature"></i>
+          <h3>Préparation Artisanale</h3>
+          <p>Tout fait maison avec amour</p>
+        </div>
+        <div class="col-md-4 feature-item">
+          <i class="fas fa-palette icon-feature"></i>
+          <h3>Décor Unique</h3>
+          <p>Ambiance pastel et girly</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="menu" class="mb-5">
+      <div class="text-center mb-4">
+        <h2 class="section-title"><i class="fas fa-book-open me-3"></i>Notre Menu</h2>
+        <p class="text-muted"><i class="fas fa-coins me-2"></i>Tous nos prix sont en Francs CFA (CFA)</p>
+      </div>
+      
+      <!-- Entrées -->
+      <div class="category-divider">
+        <h3><i class="fas fa-leaf me-2"></i>Entrées</h3>
+      </div>
+      
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="pastel.jpg" class="card-img-top" alt="Pastel (Fataya)">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-carrot me-2"></i>Pastel (Fataya)</h5>
+                <span class="menu-price">4 590 CFA</span>
+              </div>
+              <p class="card-text">Pâté sénégalais farci aux légumes et viande, servi avec sauce pimentée</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="Assiette de Fromages.webp" class="card-img-top" alt="Assiette de Fromages">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-cheese me-2"></i>Assiette de Fromages</h5>
+                <span class="menu-price">5 250 CFA</span>
+              </div>
+              <p class="card-text">Sélection de fromages français accompagnés de fruits secs</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="Crevettes Panko.webp" class="card-img-top" alt="Crevettes Panko">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-shrimp me-2"></i>Crevettes Panko</h5>
+                <span class="menu-price">6 890 CFA</span>
+              </div>
+              <p class="card-text">Crevettes panées, sauce cocktail maison</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="Bruschetta T.webp" class="card-img-top" alt="Bruschetta Tomates">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-bread-slice me-2"></i>Bruschetta Tomates</h5>
+                <span class="menu-price">3 950 CFA</span>
+              </div>
+              <p class="card-text">Pain grillé, tomates fraîches, basilic, huile d'olive</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Plats Principaux -->
+      <div class="category-divider">
+        <h3><i class="fas fa-utensils me-2"></i>Plats Principaux</h3>
+      </div>
+      
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="thiéb blanc.jpeg" class="card-img-top" alt="Thiebou Dieune">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-fish me-2"></i>Thiebou Dieune</h5>
+                <span class="menu-price">7 872 CFA</span>
+              </div>
+              <p class="card-text">Riz au poisson sénégalais avec des légumes</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="yassa.jpg" class="card-img-top" alt="Poulet Yassa">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-drumstick-bite me-2"></i>Poulet Pastel</h5>
+                <span class="menu-price">6 560 CFA</span>
+              </div>
+              <p class="card-text">Poulet mariné, oignons, citron, servi avec du riz</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="bowl pastel.webp" class="card-img-top" alt="Bowl Pastel">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-seedling me-2"></i>Bowl Pastel</h5>
+                <span class="menu-price">5 904 CFA</span>
+              </div>
+              <p class="card-text">Salade fraîche, avocat, crevettes, vinaigrette menthe</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Risotto aux Champignons">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-cheese me-2"></i>Risotto aux Champignons</h5>
+                <span class="menu-price">6 890 CFA</span>
+              </div>
+              <p class="card-text">Risotto crémeux, champignons de Paris, parmesan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Desserts -->
+      <div class="category-divider">
+        <h3><i class="fas fa-ice-cream me-2"></i>Desserts</h3>
+      </div>
+      
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="cheescake.webp" class="card-img-top" alt="Cheesecake Rose">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-cake me-2"></i>Cheesecake Rose</h5>
+                <span class="menu-price">3 936 CFA</span>
+              </div>
+              <p class="card-text">Cheesecake onctueux, coulis de framboise, éclats de pistache</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="cupcake.webp" class="card-img-top" alt="Cupcake Gourmand">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-birthday-cake me-2"></i>Cupcake Gourmand</h5>
+                <span class="menu-price">2 624 CFA</span>
+              </div>
+              <p class="card-text">Gâteau moelleux, glaçage vanille, perles sucrées</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="fondant.webp" class="card-img-top" alt="Fondant au Chocolat">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-cookie me-2"></i>Fondant au Chocolat</h5>
+                <span class="menu-price">4 260 CFA</span>
+              </div>
+              <p class="card-text">Cœur coulant, glace vanille maison</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="tarte.webp" class="card-img-top" alt="Tarte aux Pommes">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-apple-alt me-2"></i>Tarte aux Pommes</h5>
+                <span class="menu-price">4 100 CFA</span>
+              </div>
+              <p class="card-text">Pommes caramélisées, crème anglaise</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Boissons -->
+      <div class="category-divider">
+        <h3><i class="fas fa-glass-cheers me-2"></i>Boissons</h3>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="limonade.webp" class="card-img-top" alt="Limonade Maison">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-glass-whiskey me-2"></i>Limonade Maison</h5>
+                <span class="menu-price">1 968 CFA</span>
+              </div>
+              <p class="card-text">Citron, menthe fraîche, sirop maison</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Café Gourmand">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-coffee me-2"></i>Café Gourmand</h5>
+                <span class="menu-price">3 250 CFA</span>
+              </div>
+              <p class="card-text">Café expresso accompagné de mini desserts</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="bissap.webp" class="card-img-top" alt="Sélection de jus locaux">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-wine-glass-alt me-2"></i>Jus locaux</h5>
+                <span class="menu-price">à partir de 500 CFA</span>
+              </div>
+              <p class="card-text">Sélection de jus locaux (Bissap, Bouye, Ditakh, Maad...)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm border-0 highlight-card">
+            <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Cocktail Maison">
+            <div class="card-body">
+              <div class="menu-item-title">
+                <h5><i class="fas fa-cocktail me-2"></i>Cocktail Maison</h5>
+                <span class="menu-price">4 500 CFA</span>
+              </div>
+              <p class="card-text">Spécialité du chef, fruits frais, rhum arrangé</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="reservation" class="mb-5">
-      <h2 class="mb-4 text-center">Réserver</h2>
-      <form id="resForm" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-6"><input name="name" class="form-control" placeholder="Votre nom" required></div>
-        <div class="col-md-6"><input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required></div>
-        <div class="col-md-6"><input name="phone" type="tel" class="form-control" placeholder="Téléphone" required></div>
-        <div class="col-md-3"><label for="date" class="form-label">Date</label><input name="date" id="date" type="date" class="form-control" required></div>
-        <div class="col-md-3"><label for="time" class="form-label">Heure</label><select name="time" id="time" class="form-select" required><option value="">...</option><option>09:00</option><option>14:00</option><option>18:00</option></select></div>
-        <div class="col-12"><button type="submit" class="btn btn-primary">Envoyer</button></div>
-        <div class="col-12"><div id="resMsg" class="alert alert-success d-none" role="alert"></div></div>
-      </form>
+      <h2 class="mb-4 text-center section-title"><i class="fas fa-calendar-alt me-3"></i>Réserver</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h3 class="text-center mb-4"><i class="fas fa-clock reservation-icon"></i>Nos Horaires</h3>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Lundi - Vendredi
+                  <span class="badge bg-primary rounded-pill">11h - 22h</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Samedi
+                  <span class="badge bg-primary rounded-pill">10h - 23h</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Dimanche
+                  <span class="badge bg-primary rounded-pill">10h - 20h</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Jours fériés
+                  <span class="badge bg-primary rounded-pill">12h - 21h</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h3 class="text-center mb-4"><i class="fas fa-edit reservation-icon"></i>Formulaire</h3>
+              <form id="resForm" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fas fa-user me-2"></i>Votre nom</label>
+                  <input name="name" class="form-control" placeholder="Votre nom" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fas fa-envelope me-2"></i>Votre e-mail</label>
+                  <input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fas fa-phone me-2"></i>Téléphone</label>
+                  <input name="phone" type="tel" class="form-control" placeholder="Téléphone" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="date" class="form-label"><i class="fas fa-calendar-day me-2"></i>Date</label>
+                  <input name="date" id="date" type="date" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="time" class="form-label"><i class="fas fa-clock me-2"></i>Heure</label>
+                  <select name="time" id="time" class="form-select" required>
+                    <option value="">...</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label"><i class="fas fa-users me-2"></i>Nombre de personnes</label>
+                  <select name="persons" class="form-select" required>
+                    <option value="">...</option>
+                    <option>1 personne</option>
+                    <option>2 personnes</option>
+                    <option>3 personnes</option>
+                    <option>4 personnes</option>
+                    <option>5 personnes</option>
+                    <option>6 personnes ou plus</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary w-100"><i class="fas fa-paper-plane me-2"></i>Envoyer</button>
+                </div>
+                <div class="col-12">
+                  <div id="resMsg" class="alert alert-success d-none" role="alert"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="testimonials" class="mb-5 text-center">
-      <h2 class="mb-4">Témoignages</h2>
+      <h2 class="mb-4 section-title"><i class="fas fa-comments me-3"></i>Témoignages</h2>
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active"><p>“Ambiance magique et desserts exquis !”</p><footer>— Client A</footer></div>
-          <div class="carousel-item"><p>“Un lieu chic, doux, et très convivial.”</p><footer>— Cliente B</footer></div>
-          <div class="carousel-item"><p>“J’ai adoré chaque bouchée et l’esthétique pastel.”</p><footer>— Client C</footer></div>
+          <div class="carousel-item active">
+            <i class="fas fa-quote-left testimonial-icon"></i>
+            <p>“Ambiance magique et desserts exquis ! J'ai passé un moment merveilleux avec mes amies.”</p>
+            <footer>— Fatou Ndiaye</footer>
+          </div>
+          <div class="carousel-item">
+            <i class="fas fa-quote-left testimonial-icon"></i>
+            <p>“Un lieu chic, doux, et très convivial. Le service est impeccable et les plats divins.”</p>
+            <footer>— Awa Diop</footer>
+          </div>
+          <div class="carousel-item">
+            <i class="fas fa-quote-left testimonial-icon"></i>
+            <p>“J’ai adoré chaque bouchée et l’esthétique pastel. C'est devenu mon restaurant préféré à Dakar.”</p>
+            <footer>— Mariama Sow</footer>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Précédent</span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Suivant</span></button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
       </div>
     </section>
 
     <section id="contact" class="mb-5">
-      <h2 class="mb-4 text-center">Contact</h2>
-      <form id="contactForm" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-6"><input name="name" class="form-control" placeholder="Votre nom" required></div>
-        <div class="col-md-6"><input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required></div>
-        <div class="col-12"><textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea></div>
-        <div class="col-12"><button type="submit" class="btn btn-secondary">Envoyer</button></div>
-        <div class="col-12"><div id="contactMsg" class="alert alert-secondary d-none" role="alert"></div></div>
-      </form>
-      <p class="mt-3 text-center">📞 <a href="tel:+33123456789">+33 1 23 45 67 89</a> · ✉️ <a href="mailto:contact@example.com">contact@sunu.com</a></p>
+      <h2 class="mb-4 text-center section-title"><i class="fas fa-envelope me-3"></i>Contact</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h3 class="text-center mb-4"><i class="fas fa-map-marker-alt contact-icon"></i>Nous trouver</h3>
+              <p>Retrouvez nous</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="fas fa-map-marker-alt me-2"></i>
+                  Mermoz pyrotechnie, Dakar, Sénégal
+                </li>
+                <li class="list-group-item">
+                  <i class="fas fa-phone me-2"></i>
+                  <a href="tel:+221338645678">+221 78 290 75 44</a>
+                </li>
+                <li class="list-group-item">
+                  <i class="fas fa-envelope me-2"></i>
+                  <a href="mailto:contact@Sunu Wagne.com">diedhioun4@gmail.com</a>
+                </li>
+                <li class="list-group-item">
+                  <i class="fas fa-clock me-2"></i>
+                  Ouvert tous les jours de 11h à 22h
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h3 class="text-center mb-4"><i class="fas fa-paper-plane contact-icon"></i>Nous écrire</h3>
+              <form id="contactForm" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fas fa-user me-2"></i>Votre nom</label>
+                  <input name="name" class="form-control" placeholder="Votre nom" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fas fa-envelope me-2"></i>Votre e-mail</label>
+                  <input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label"><i class="fas fa-tag me-2"></i>Sujet</label>
+                  <input name="subject" class="form-control" placeholder="Sujet de votre message" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label"><i class="fas fa-comment me-2"></i>Message</label>
+                  <textarea name="message" class="form-control" rows="4" placeholder="Votre message" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-paper-plane me-2"></i>Envoyer</button>
+                </div>
+                <div class="col-12">
+                  <div id="contactMsg" class="alert alert-secondary d-none" role="alert"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="py-4 text-center">
-    <div class="mb-3"><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">TikTok</a></div>
-    <small>&copy; 2025 Sunu · <a href="#">Mentions</a> · <a href="#">Confidentialité</a></small>
+  <footer class="py-5 text-center">
+    <div class="container">
+      <div class="mb-4">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="mb-3">
+        <a href="#" class="btn btn-outline-light mx-2"><i class="fas fa-utensils me-2"></i>Présentation</a>
+        <a href="#menu" class="btn btn-outline-light mx-2"><i class="fas fa-users me-2"></i>Menu</a>
+        <a href="#reservation" class="btn btn-outline-light mx-2"><i class="fas fa-calendar-alt me-2"></i>Réservation</a>
+      </div>
+      <div class="mb-4">
+        <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Mermoz pyrotechnie, Dakar, Sénégal</p>
+        <p class="mb-1"><i class="fas fa-phone me-2"></i>+221 78 290 75 44</p>
+        <p><i class="fas fa-envelope me-2"></i>diedhioun4@gmail.com</p>
+      </div>
+      <small class="d-block mb-3">&copy; 2025 Sunu Wagne · <a href="#" class="text-light">Mentions légales</a> · <a href="#" class="text-light">Politique de confidentialité</a></small>
+      <div>
+        <a href="#" class="btn btn-outline-light btn-sm mx-1"><i class="fas fa-arrow-up me-1"></i>Retour en haut</a>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -121,9 +901,17 @@
           o.textContent = 'Merci ! Nous avons bien reçu votre message.';
           o.classList.remove('d-none');
           f.reset(); f.classList.remove('was-validated');
+          
+
+          o.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       };
-      handle('resForm', 'resMsg'); handle('contactForm', 'contactMsg');
+      handle('resForm', 'resMsg'); 
+      handle('contactForm', 'contactMsg');
+      
+      // Set minimum date for reservation
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('date').min = today;
     })();
   </script>
 </body>
