@@ -1,158 +1,201 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Landing Page Bootstrap</title>
-  <!-- Bootstrap 5 CSS -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Restaurant Sunu - Dark/Light Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
-    header {
-      background: url('hero.jpg') center/cover no-repeat;
-      height: 60vh;
+    :root {
+      --primary: #e06c9f;
+      --secondary: #b2dfdb;
+      --bg-light: #fff5e1;
+      --text-dark: #3e2723;
+      --accent: #fbc687;
+      --font-logo: 'Pacifico', cursive;
     }
-    header h1 {
-      text-shadow: 2px 2px 5px rgba(0,0,0,.7);
+
+    body.dark-mode {
+      --primary: #ffd1dc;
+      --secondary: #b2dfdb;
+      --bg-light: #2b0d30;
+      --text-dark: #fff3e9;
+      --accent: #fbc687;
     }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .logo {
+      font-family: var(--font-logo);
+      font-size: 2rem;
+      color: var(--primary);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .navbar, footer {
+      background-color: var(--text-dark);
+    }
+
+    .navbar .nav-link, footer a {
+      color: var(--bg-light);
+    }
+
+    .navbar .nav-link:hover, footer a:hover {
+      color: var(--primary);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--text-dark);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent);
+      color: var(--text-dark);
+    }
+
+    .btn-outline-light:hover {
+      background-color: var(--primary);
+      color: var(--text-dark);
+    }
+
     .gallery img {
       border-radius: .5rem;
       transition: transform .3s;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
+    }
+
+    .carousel-inner {
+      background: var(--bg-light);
+      border-radius: .5rem;
+      padding: 2rem;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="#">MonLogo</a>
+      <a class="navbar-brand logo" href="#">Sunu</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navMenu" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a href="#gallery" class="nav-link">Galerie</a></li>
-          <li class="nav-item"><a href="#reservation" class="nav-link">Réservation</a></li>
-          <li class="nav-item"><a href="#testimonials" class="nav-link">Témoignages</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#gallery">Galerie</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reservation">Réservation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Témoignages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="d-flex align-items-center justify-content-center text-center text-white">
+  <div class="dark-toggle form-check form-switch text-end">
+    <input class="form-check-input" type="checkbox" id="darkSwitch">
+    <label class="form-check-label text-muted" for="darkSwitch">🌙 Dark Mode</label>
+  </div>
+
+  <header class="d-flex align-items-center justify-content-center text-center text-white" style="background:url('hero.jpg') center/cover; height:60vh;">
     <div>
-      <h1 class="display-4 fw-bold">Bienvenue chez Nous</h1>
-      <p class="lead">Profitez de nos services d’exception dès maintenant.</p>
+      <h1 class="display-4 fw-bold">Bienvenue chez Sunu</h1>
+      <p class="lead">Un voyage gourmand dans un cadre pastel & raffiné.</p>
       <a href="#reservation" class="btn btn-primary btn-lg me-2">Réserver</a>
-      <a href="#gallery" class="btn btn-outline-light btn-lg">En savoir plus</a>
+      <a href="#gallery" class="btn btn-outline-light btn-lg">Découvrir</a>
     </div>
   </header>
 
   <main class="container py-5">
-    <!-- Galerie -->
     <section id="gallery" class="gallery mb-5">
+      <h2 class="mb-4 text-center">Nos Ambiances & Délices</h2>
       <div class="row g-4">
-        <div class="col-md-4"><img src="img1.jpg" class="w-100" alt="Service 1"/></div>
-        <div class="col-md-4"><img src="img2.jpg" class="w-100" alt="Service 2"/></div>
-        <div class="col-md-4"><img src="img3.jpg" class="w-100" alt="Service 3"/></div>
+        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Délice+Roses" alt="Dessert rose pastel" class="w-100"/></div>
+        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Intérieur+Pastel" alt="Intérieur pastel" class="w-100"/></div>
+        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Cupcakes+Gourmands" alt="Cupcakes gourmands" class="w-100"/></div>
+        <div class="col-md-6"><img src="https://via.placeholder.com/600x400?text=Ambiance+Mint" alt="Ambiance vert menthe" class="w-100"/></div>
       </div>
     </section>
 
-    <!-- Réservation -->
     <section id="reservation" class="mb-5">
-      <h2 class="mb-4">Réservez votre créneau</h2>
+      <h2 class="mb-4 text-center">Réserver</h2>
       <form id="resForm" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="Votre nom" required></div>
-        <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Votre e‑mail" required></div>
-        <div class="col-md-6"><input type="tel" name="phone" class="form-control" placeholder="Votre téléphone" required></div>
-        <div class="col-md-3">
-          <label for="date" class="form-label">Date</label>
-          <input type="date" name="date" id="date" class="form-control" required>
-        </div>
-        <div class="col-md-3">
-          <label for="time" class="form-label">Heure</label>
-          <select name="time" id="time" class="form-select" required>
-            <option value="">Choisissez...</option>
-            <option>09:00</option><option>11:00</option><option>14:00</option><option>16:00</option>
-          </select>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-success">Envoyer</button>
-        </div>
+        <div class="col-md-6"><input name="name" class="form-control" placeholder="Votre nom" required></div>
+        <div class="col-md-6"><input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required></div>
+        <div class="col-md-6"><input name="phone" type="tel" class="form-control" placeholder="Téléphone" required></div>
+        <div class="col-md-3"><label for="date" class="form-label">Date</label><input name="date" id="date" type="date" class="form-control" required></div>
+        <div class="col-md-3"><label for="time" class="form-label">Heure</label><select name="time" id="time" class="form-select" required><option value="">...</option><option>09:00</option><option>14:00</option><option>18:00</option></select></div>
+        <div class="col-12"><button type="submit" class="btn btn-primary">Envoyer</button></div>
         <div class="col-12"><div id="resMsg" class="alert alert-success d-none" role="alert"></div></div>
       </form>
     </section>
 
-    <!-- Témoignages -->
     <section id="testimonials" class="mb-5 text-center">
-      <h2 class="mb-4">Ils nous recommandent</h2>
+      <h2 class="mb-4">Témoignages</h2>
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active"><p class="fs-5">“Service top, je recommande à 100 % !”</p><footer>— Client A</footer></div>
-          <div class="carousel-item"><p class="fs-5">“Très pro et agréable.”</p><footer>— Cliente B</footer></div>
-          <div class="carousel-item"><p class="fs-5">“Expérience parfaite du début à la fin.”</p><footer>— Client C</footer></div>
+          <div class="carousel-item active"><p>“Ambiance magique et desserts exquis !”</p><footer>— Client A</footer></div>
+          <div class="carousel-item"><p>“Un lieu chic, doux, et très convivial.”</p><footer>— Cliente B</footer></div>
+          <div class="carousel-item"><p>“J’ai adoré chaque bouchée et l’esthétique pastel.”</p><footer>— Client C</footer></div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Suivant</span>
-        </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="mb-5">
-      <h2 class="mb-4">Contactez-nous</h2>
+      <h2 class="mb-4 text-center">Contact</h2>
       <form id="contactForm" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="Votre nom" required></div>
-        <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Votre e‑mail" required></div>
-        <div class="col-12"><textarea name="message" class="form-control" rows="4" placeholder="Votre message" required></textarea></div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Envoyer</button>
-        </div>
-        <div class="col-12"><div id="contactMsg" class="alert alert-primary d-none" role="alert"></div></div>
+        <div class="col-md-6"><input name="name" class="form-control" placeholder="Votre nom" required></div>
+        <div class="col-md-6"><input name="email" type="email" class="form-control" placeholder="Votre e‑mail" required></div>
+        <div class="col-12"><textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea></div>
+        <div class="col-12"><button type="submit" class="btn btn-secondary">Envoyer</button></div>
+        <div class="col-12"><div id="contactMsg" class="alert alert-secondary d-none" role="alert"></div></div>
       </form>
-      <p class="mt-3">📞 <a href="tel:+33123456789">+33 1 23 45 67 89</a> · ✉️ <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p class="mt-3 text-center">📞 <a href="tel:+33123456789">+33 1 23 45 67 89</a> · ✉️ <a href="mailto:contact@example.com">contact@sunu.com</a></p>
     </section>
   </main>
 
-  <footer class="bg-dark text-light py-4 text-center">
-    <div class="mb-3">
-      <a href="#" class="text-light me-2">Facebook</a>
-      <a href="#" class="text-light me-2">Twitter</a>
-      <a href="#" class="text-light">Instagram</a>
-    </div>
-    <small>&copy; 2025 MonEntreprise · <a class="text-light" href="#">Mentions légales</a> · <a class="text-light" href="#">Politique de confidentialité</a></small>
+  <footer class="py-4 text-center">
+    <div class="mb-3"><a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">TikTok</a></div>
+    <small>&copy; 2025 Sunu · <a href="#">Mentions</a> · <a href="#">Confidentialité</a></small>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Validation + message confirmation
     (() => {
-      const handleForm = (formId, msgId, successClass) => {
-        const form = document.getElementById(formId);
-        const msg = document.getElementById(msgId);
-        form.addEventListener('submit', e => {
+      const handle = (id, msg) => {
+        const f = document.getElementById(id), o = document.getElementById(msg);
+        f.addEventListener('submit', e => {
           e.preventDefault();
-          if (!form.checkValidity()) {
-            form.classList.add('was-validated');
-            return;
-          }
-          msg.textContent = 'Merci ! Nous avons bien reçu votre demande.';
-          msg.classList.remove('d-none', 'alert-danger');
-          msg.classList.add(successClass);
-          form.reset();
-          form.classList.remove('was-validated');
+          if (!f.checkValidity()) { f.classList.add('was-validated'); return; }
+          o.textContent = 'Merci ! Nous avons bien reçu votre message.';
+          o.classList.remove('d-none');
+          f.reset(); f.classList.remove('was-validated');
         });
       };
-      handleForm('resForm', 'resMsg', 'alert-success');
-      handleForm('contactForm', 'contactMsg', 'alert-primary');
+      handle('resForm', 'resMsg');
+      handle('contactForm', 'contactMsg');
+
+      // Dark Mode Switch
+      const toggle = document.getElementById('darkSwitch');
+      toggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode', toggle.checked);
+      });
     })();
   </script>
 </body>
