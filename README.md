@@ -30,4 +30,12 @@ Ce site a été conçu pour offrir une **expérience utilisateur chaleureuse, vi
 
 ---
 
-# projet-mentorat1
+## How to view
+You can view the live project here:  
+[https://ndeye-diegui-diedhiou.github.io/projet-mentorat1](https://ndeye-diegui-diedhiou.github.io/projet-mentorat1/)
+
+## Contact
+For questions or feedback, feel free to reach out to me!
+- Email: diedhioun4@gmail.Com
+- Tel: +221 78 290 75 44
+
